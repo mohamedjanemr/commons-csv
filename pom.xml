@@ -22,9 +22,7 @@ limitations under the License.
     <artifactId>commons-parent</artifactId>
     <version>38</version>
   </parent>
-  <groupId>org.apache.commons</groupId>
-  <artifactId>commons-csv</artifactId>
-  <version>1.3-SNAPSHOT</version>
+  
   <name>Apache Commons CSV</name>
   <url>http://commons.apache.org/proper/commons-csv/</url>
   <description>
@@ -39,6 +37,11 @@ CSV files of various types.
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+  <groupId>org.apache.commons</groupId>
+  <artifactId>commons-csv</artifactId>
+  <version>1.2</version>
+</dependency>
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
