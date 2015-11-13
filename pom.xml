@@ -1,19 +1,21 @@
-<?xml version="1.0"?><!--
+<?xml version="1.0"?>
+<!--
 Licensed to the Apache Software Foundation (ASF) under one or more
 contributor license agreements.  See the NOTICE file distributed with
 this work for additional information regarding copyright ownership.
 The ASF licenses this file to You under the Apache License, Version 2.0
 (the "License"); you may not use this file except in compliance with
 the License.  You may obtain a copy of the License at
- 
+
      http://www.apache.org/licenses/LICENSE-2.0
- 
+
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.apache.commons</groupId>
@@ -22,14 +24,14 @@ limitations under the License.
   </parent>
   <groupId>org.apache.commons</groupId>
   <artifactId>commons-csv</artifactId>
-  <version>1.2</version>
+  <version>1.3-SNAPSHOT</version>
   <name>Apache Commons CSV</name>
   <url>http://commons.apache.org/proper/commons-csv/</url>
   <description>
 The Apache Commons CSV library provides a simple interface for reading and writing
 CSV files of various types.
   </description>
- 
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -50,7 +52,7 @@ CSV files of various types.
       <scope>test</scope>
     </dependency>
   </dependencies>
- 
+
   <developers>
     <developer>
       <id>bayard</id>
@@ -95,18 +97,18 @@ CSV files of various types.
       <name>Bob Smith</name>
     </contributor>
   </contributors>
- 
+
   <scm>
     <connection>scm:svn:http://svn.apache.org/repos/asf/commons/proper/csv/trunk</connection>
     <developerConnection>scm:svn:https://svn.apache.org/repos/asf/commons/proper/csv/trunk</developerConnection>
     <url>http://svn.apache.org/viewvc/commons/proper/csv/trunk</url>
   </scm>
- 
+
   <issueManagement>
     <system>jira</system>
     <url>http://issues.apache.org/jira/browse/CSV</url>
   </issueManagement>
- 
+
   <distributionManagement>
     <site>
       <id>apache.website</id>
@@ -114,9 +116,9 @@ CSV files of various types.
       <url>scm:svn:https://svn.apache.org/repos/infra/websites/production/commons/content/proper/commons-csv/</url>
     </site>
   </distributionManagement>
- 
+
   <properties>
-    <commons.release.version>1.2</commons.release.version>
+    <commons.release.version>1.3</commons.release.version>
     <commons.release.desc>(Java 6.0+)</commons.release.desc>
     <!-- The RC version used in the staging repository URL. -->
     <commons.rc.version>RC1</commons.rc.version>
@@ -129,12 +131,12 @@ CSV files of various types.
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <commons.encoding>UTF-8</commons.encoding>
- 
+
     <checkstyle.version>2.16</checkstyle.version>
     <checkstyle.header.file>${basedir}/LICENSE-header.txt</checkstyle.header.file>
     <checkstyle.resourceExcludes>LICENSE.txt, NOTICE.txt</checkstyle.resourceExcludes>
   </properties>
- 
+
   <build>
     <pluginManagement>
       <plugins>
@@ -163,8 +165,8 @@ CSV files of various types.
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
           <descriptors>
-             <descriptor>src/main/assembly/bin.xml</descriptor>
-             <descriptor>src/main/assembly/src.xml</descriptor>
+             <descriptor>src/assembly/bin.xml</descriptor>
+             <descriptor>src/assembly/src.xml</descriptor>
           </descriptors>
           <tarLongFileMode>gnu</tarLongFileMode>
         </configuration>
@@ -188,7 +190,7 @@ CSV files of various types.
           <enableRulesSummary>false</enableRulesSummary>
         </configuration>
       </plugin>
- 
+
       <!-- We need to add our test data files to rat exclusions -->
       <!-- Needed for command-line access, e.g mvn apache-rat:rat and mvn apache-rat:check -->
       <plugin>
@@ -214,7 +216,7 @@ CSV files of various types.
       </plugin>
     </plugins>
   </build>
- 
+
   <reporting>
     <plugins>
       <!-- Keep in sync with build config above -->
@@ -302,7 +304,7 @@ CSV files of various types.
         <artifactId>javancss-maven-plugin</artifactId>
         <version>2.0</version>
       </plugin>
- 
+
       <!-- We need to add our test data files to rat exclusions -->
       <plugin>
         <groupId>org.apache.rat</groupId>
@@ -327,7 +329,7 @@ CSV files of various types.
       </plugin>
     </plugins>
   </reporting>
- 
+
   <profiles>
     <profile>
       <id>setup-checkout</id>
@@ -352,18 +354,18 @@ CSV files of various types.
                 <configuration>
                   <tasks>
                     <exec executable="svn">
-                      <arg line="checkout --depth immediates ${commons.scmPubUrl} ${commons.scmPubCheckoutDirectory}"/>
+                      <arg line="checkout --depth immediates ${commons.scmPubUrl} ${commons.scmPubCheckoutDirectory}" />
                     </exec>
- 
+
                     <exec executable="svn">
-                      <arg line="update --set-depth exclude ${commons.scmPubCheckoutDirectory}/javadocs"/>
+                      <arg line="update --set-depth exclude ${commons.scmPubCheckoutDirectory}/javadocs" />
                     </exec>
- 
+
                     <pathconvert pathsep=" " property="dirs">
-                      <dirset dir="${commons.scmPubCheckoutDirectory}" includes="*"/>
+                      <dirset dir="${commons.scmPubCheckoutDirectory}" includes="*" />
                     </pathconvert>
                     <exec executable="svn">
-                      <arg line="update --set-depth infinity ${dirs}"/>
+                      <arg line="update --set-depth infinity ${dirs}" />
                     </exec>
                   </tasks>
                 </configuration>
@@ -373,12 +375,12 @@ CSV files of various types.
         </plugins>
       </build>
     </profile>
-     
- 
+    
+
     <!-- Profile to build and run the benchmarks. Use 'mvn test -Pbenchmark', and add '-Dbenchmark=foo' to run only the foo benchmark -->
     <profile>
       <id>benchmark</id>
-       
+      
       <dependencies>
         <dependency>
           <groupId>org.openjdk.jmh</groupId>
@@ -386,41 +388,41 @@ CSV files of various types.
           <version>1.5.2</version>
           <scope>test</scope>
         </dependency>
-     
+    
         <dependency>
           <groupId>org.openjdk.jmh</groupId>
           <artifactId>jmh-generator-annprocess</artifactId>
           <version>1.5.2</version>
           <scope>test</scope>
         </dependency>
- 
+
         <dependency>
           <groupId>genjava</groupId>
           <artifactId>gj-csv</artifactId>
           <version>1.0</version>
           <scope>test</scope>
         </dependency>
-         
+        
         <dependency>
             <groupId>net.sourceforge.javacsv</groupId>
             <artifactId>javacsv</artifactId>
             <version>2.0</version>
           <scope>test</scope>
         </dependency>
-     
+    
         <dependency>
           <groupId>com.opencsv</groupId>
           <artifactId>opencsv</artifactId>
           <version>3.1</version>
           <scope>test</scope>
         </dependency>
- 
+
         <dependency>
           <groupId>net.sf.supercsv</groupId>
           <artifactId>super-csv</artifactId>
           <version>2.2.1</version>
         </dependency>
- 
+
         <!-- Not in Maven Central, download manually from http://kasparov.skife.org/csv/csv-1.0.jar and install with:
              mvn install:install-file -Dfile=E:/Java/skife.org/csv-1.0.jar -DgroupId=org.skife.kasparov -DartifactId=csv -Dversion=1.0 -Dpackaging=jar -->
         <dependency>
@@ -428,19 +430,19 @@ CSV files of various types.
           <artifactId>csv</artifactId>
           <version>1.0</version>
         </dependency>
-         
+        
         <dependency>
           <groupId>org.apache.commons</groupId>
           <artifactId>commons-lang3</artifactId>
           <version>3.4</version>
         </dependency>
       </dependencies>
-       
+      
       <properties>
         <skipTests>true</skipTests>
         <benchmark>org.apache</benchmark>
       </properties>
-       
+      
       <build>
         <plugins>
           <!-- Enable the compilation of the benchmarks -->
@@ -452,7 +454,7 @@ CSV files of various types.
               </testIncludes>
             </configuration>
           </plugin>
-           
+          
           <!-- Hook the benchmarks to the test phase -->
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
@@ -485,5 +487,5 @@ CSV files of various types.
       </build>
     </profile>
   </profiles>
- 
+
 </project>
